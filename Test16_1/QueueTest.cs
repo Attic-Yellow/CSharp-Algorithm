@@ -1,46 +1,44 @@
-﻿namespace Test16_1
-{
-    internal class Program
-    {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        public bool solution(string s)
+namespace Test16_1
+{
+    class Test16_2
+    {
+        public bool solution2(string s)
         {
-            int count = 0;
+            Queue<string> queue = new Queue<string>();
 
             for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] == '(')
                 {
-                    count++;
+                    queue.Enqueue(s[i].ToString());
                 }
-                else
+                if (s[i] == '(')
                 {
-                    if (count == 0)
+                    if (queue.Count == 0)
                     {
                         return false;
                     }
                     else
                     {
-                        count--;
+                        queue.Dequeue();
                     }
                 }
+                    
             }
 
-            if (count != 0)
+            if (queue.Count != 0)
             {
                 return false;
             }
 
             bool answer = true;
             return answer;
-        }
-
-        static void Main(string[] args)
-        {
-            StackTest program = new StackTest();
-            string str = Console.ReadLine();
-
-            Console.WriteLine(program.solution3(str));
         }
     }
 }
