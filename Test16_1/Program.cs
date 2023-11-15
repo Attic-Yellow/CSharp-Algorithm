@@ -7,22 +7,19 @@
         {
             int count = 0;
 
-            for (int i = 0; i < s.Length; i++)
+            foreach(char c in s)
             {
-                if (s[i] == '(')
+                if(c == '(')
                 {
                     count++;
                 }
                 else
                 {
-                    if (count == 0)
+                    if(count == 0)
                     {
                         return false;
                     }
-                    else
-                    {
-                        count--;
-                    }
+                    count--;
                 }
             }
 
@@ -37,10 +34,10 @@
 
         static void Main(string[] args)
         {
-            StackTest program = new StackTest();
+            Program program = new Program();
             string str = Console.ReadLine();
 
-            Console.WriteLine(program.solution3(str));
+            Console.WriteLine(program.solution(str));
         }
     }
 }

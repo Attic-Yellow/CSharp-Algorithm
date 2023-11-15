@@ -21,15 +21,10 @@ namespace Test16_1
                 }
                 else
                 {
-                    if (stack.Count == 0)
+                    if (stack.Count == 0 || stack.Pop() != '(')
                     {
                         return false;
                     }
-                    else
-                    {
-                        stack.Pop();
-                    }
-                   
                 }
             }
 
