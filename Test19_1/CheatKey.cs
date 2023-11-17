@@ -10,20 +10,32 @@ namespace Test19_1
     {
         private Dictionary<string, Action> cheatDic;
 
-        public CheatKey()
+        public void Run(string cheatKey)
         {
             cheatDic = new Dictionary<string, Action>();
 
-            cheatDic.Add("ShowMeTheMoney", Money);
-            cheatDic.Add("ThereIsNoCowLevel", ThereIsNoCowLevel);
-        }
+            Action money = () =>
+            {
+                Money();
+            };
 
-        public void Run(string cheatKey)
-        {
-            Action action = cheatDic[cheatKey];
+            Action level = () =>
+            {
+                ThereIsNoCowLevel();
+            };
 
-            action?.Invoke();
+            cheatDic.Add("ShowMeTheMoney", () => money());
+            cheatDic.Add("ThereIsNoCowLevel", () => level());
+
+            Dictionary<string, Action> newCheatDic 
+            = (Dictionary<string, Action>)cheatDic.Where(item => item.Key.Contains(cheatKey)).ToDictionary(item => item.Key, item => item.Value);
+
+            foreach(KeyValuePair<string, Action> entry in newCheatDic)
+            {
+                entry.Value();
+            }
             
+
             // 조건문 없이 바로 탐색하여 치트키 발동
         }
 
