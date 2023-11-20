@@ -78,12 +78,16 @@ namespace _09._Dictionary
 
             Monster d = dic["파이리"];
 
+            dic.TryGetValue("파이리", out Monster m1);
+
+            Console.WriteLine("{0}, {1}", d.name, m1.name);
+
             dic.Remove("파이리");
         }
 
         static void Main(string[] args)
         {
-            
+            Test();
         }
     }
 }
