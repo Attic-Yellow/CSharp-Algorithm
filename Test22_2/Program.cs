@@ -29,6 +29,22 @@ namespace Test22_2
             }
         }
 
+        public void AddEdge(int i1, int i2)
+        {
+            Node n1 = nodes[i1];
+            Node n2 = nodes[i2];
+
+            if (!n1.mo.Contains(n2))
+            {
+                n1.mo.Add(n2);
+            }
+
+            if (!n2.mo.Contains(n1))
+            {
+                n2.mo.Add(n1);
+            }
+        }
+
         public void dfs(int index)
         {
             Node root = nodes[index];
@@ -41,21 +57,26 @@ namespace Test22_2
                 var node = stack.Pop();
                 for (int i = 0; i < node.mo.Count; i++)
                 {
-                    var adjacentNode = node.mo[i];
-                    if (adjacentNode.marked == false)
+                    var moNode = node.mo[i];
+                    if (moNode.marked == false)
                     {
-                        adjacentNode.marked = true;
-                        stack.Push(adjacentNode);
+                        moNode.marked = true;
+                        stack.Push(moNode);
                     }
                 }
-                Console.Write(node.data + ",");
+                Console.Write("{0} ", node.data);
             }
-
         }
 
         static void Main(string[] args)
         {
             Program program = new Program(6);
+
+            program.AddEdge(0, 1);
+            program.AddEdge(0, 2);
+            program.AddEdge(1, 3);
+            program.AddEdge(2, 4);
+            program.AddEdge(3, 5);
 
             program.dfs(0);
 
